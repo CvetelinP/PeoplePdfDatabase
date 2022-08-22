@@ -1,0 +1,49 @@
+﻿@using AspNetCoreTemplate.Web.ViewModels.Search
+@model ListViewModel
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birhday</th>
+            <th>File</th>
+            <th>Update</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Minors)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.DateOfBirth</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target=@("#exampleModal"+item.Id)>
+                        <i class='fas fa-file-pdf' style="color:red"></i>
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-outline-dark"><i class='far fa-edit' style='font-size:15px'></i></button> </a>
+                <td>
+
+                    <div class="modal fade" id=@("exampleModal"+item.Id) tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <embed src="@item.FilePdfUrl" class="w-100" style="height: 700px" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </tr>
+
+        }
+    </tbody>
+</table>

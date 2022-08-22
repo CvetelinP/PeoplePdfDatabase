@@ -1,0 +1,22 @@
+﻿@using AspNetCoreTemplate.Web.ViewModels.Minor
+@model MinorViewModel
+<form enctype="multipart/form-data" asp-controller="Minor" asp-action="Add" method="post">
+    <h1 class="text-center">Create minor</h1>
+
+    <div>
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="text-danger">
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" />
+        <input asp-for="FilePdf" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      
+    </div>
+    <button type="submit" class="btn btn-success text-uppercase">Submit</button>
+</form>
+
+
+
+
+
