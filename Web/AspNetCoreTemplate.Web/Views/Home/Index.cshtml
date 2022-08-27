@@ -16,7 +16,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Day/Month/Year</th>
+            <th>Month/Day/Year</th>
             <th>File Pf format</th>
             <th>Update</th>
         </tr>
@@ -27,7 +27,7 @@
         {
             <tr>
                 <td><b>@item.Name</b></td>
-                <td>@item.Year</td>
+                <td>@item.Month/@item.Day/@item.Year</td>
 
                 <td>
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target=@("#exampleModal"+item.Id)>

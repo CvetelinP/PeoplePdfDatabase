@@ -7,6 +7,7 @@
         <tr>
             <th>Name</th>
             <th>Birhday</th>
+
             <th>File</th>
             <th>Update</th>
         </tr>
@@ -17,7 +18,9 @@
         {
             <tr>
                 <td>@item.Name</td>
-                <td>@item.DateOfBirth</td>
+                <td>@item.Month/@item.Day/@item.Year</td>
+                
+               
                 <td>
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target=@("#exampleModal"+item.Id)>
                         <i class='fas fa-file-pdf' style="color:red"></i>
