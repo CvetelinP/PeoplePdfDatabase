@@ -9,7 +9,6 @@
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Mapping;
     using AspNetCoreTemplate.Web.ViewModels.Minor;
-    using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
     public class MinorService : IMinorServicecs
     {
@@ -28,6 +27,9 @@
                 Name = model.Name,
                 DateOfBirth = model.DateOfBirth,
                 FilePdfUrl = model.FilePdfUrl,
+                Year = model.Year,
+                Month = model.Month,
+                Day = model.Day,
             };
 
             await this.minorRepository.AddAsync(minor);
@@ -61,7 +63,7 @@
         {
             if (search is null)
             {
-               return Enumerable.Empty<T>();
+                return Enumerable.Empty<T>();
             }
 
             var minors = this.minorRepository.All().Where(x => x.Name.ToLower().Contains(search.ToLower()));
@@ -69,11 +71,33 @@
             return minors.To<T>().ToList();
         }
 
+        public IList<MinorDateViewModel> GetDate(string year)
+        {
+
+            var miniors = this.minorRepository
+                .All()
+                .Where(x=>x.Year.Contains(year))
+                .Select(a => new MinorDateViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Day = a.Day,
+                    Month = a.Month,
+                    Year = a.Year,
+                    FilePdfUrl = a.FilePdfUrl,
+                }).ToList();
+
+            return miniors;
+        }
+
+
         public T GetById<T>(int id)
         {
-            var minor = this.minorRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
+            var minor = this.minorRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
             return minor;
         }
+
+
 
         public async Task UpdateAsync(int id, EditMinorViewModel input)
         {
@@ -84,6 +108,7 @@
 
             await this.minorRepository.SaveChangesAsync();
         }
+
 
     }
 }

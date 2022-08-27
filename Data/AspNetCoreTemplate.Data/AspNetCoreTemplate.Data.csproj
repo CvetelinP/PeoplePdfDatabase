@@ -48,4 +48,8 @@
     <ProjectReference Include="..\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

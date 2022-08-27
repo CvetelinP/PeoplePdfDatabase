@@ -1,12 +1,11 @@
 ﻿namespace AspNetCoreTemplate.Web.ViewModels.Minor
 {
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Services.Mapping;
-    using Microsoft.AspNetCore.Http;
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class MinorViewModel : IMapFrom<Minor>
+    using Microsoft.AspNetCore.Http;
+
+    public class MinorDateViewModel
     {
         [Key]
         public int Id { get; set; }
@@ -17,7 +16,6 @@
         public string Name { get; set; }
 
         public string Year { get; set; }
-
         public string Month { get; set; }
 
         public string Day { get; set; }
@@ -32,6 +30,5 @@
         public IFormFile FilePdf { get; set; }
 
         public string FilePdfUrl { get; set; }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -18,5 +19,7 @@
         Task<bool> DeleteAsync(int minorId);
 
         public IEnumerable<T> GetAllByName<T>(string name);
+
+        IList<MinorDateViewModel> GetDate(string year);
     }
 }

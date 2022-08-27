@@ -5,18 +5,19 @@
 @{
     this.ViewData["Title"] = "Home Page";
 }
-<a class="btn btn-outline-danger" asp-controller="Minor" asp-action="Add">Create minor</a>
+<a class="btn btn-outline-danger" asp-controller="Minor" asp-action="Add">Create</a>
 
 @*Make search filter*@
 
 <partial name="_SearchBarPartial" />
 
+<partial name="_SearchBydatePartial" />
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
-            <th>Birhday</th>
-            <th>File</th>
+            <th>Day/Month/Year</th>
+            <th>File Pf format</th>
             <th>Update</th>
         </tr>
 
@@ -25,8 +26,9 @@
         @foreach (var item in Model.Minors)
         {
             <tr>
-                <td>@item.Name</td>
-                <td><i class='fas fa-calendar-alt' style='color:darkgreen'> </i> @item.DateOfBirth</td>
+                <td><b>@item.Name</b></td>
+                <td>@item.Year</td>
+
                 <td>
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target=@("#exampleModal"+item.Id)>
                         <i class='fas fa-file-pdf' style="color:red"></i>
@@ -34,7 +36,7 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-outline-dark"><i class='far fa-edit' style='font-size:15px'></i></button> </a>
                 <td>
-                <td><a asp-controller="Minor" asp-action="Delete"  asp-route-id="@item.Id"><i class='far fa-trash-alt' style='font-size:24px'></i></a></td>
+                <td><a asp-controller="Minor" asp-action="Delete" asp-route-id="@item.Id"><i class='far fa-trash-alt' style='font-size:24px'></i></a></td>
 
                 <div class="modal fade" id=@("exampleModal"+item.Id) tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
                     <div class="modal-dialog modal-xl">
